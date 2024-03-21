@@ -5,3 +5,8 @@
   border-radius: 20px;
   margin-top: 30px;
 }
+
+table, th, td {
+  border: black solid 1px !important;
+  padding: 5px;
+}

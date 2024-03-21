@@ -1,8 +1,7 @@
 let cart= [];
-var itemIndex;
 
 
-function calc(){
+function calc() {
   show.innerHTML = cart
   show.innerHTML = ""
   document.getElementById("show").style.display = "block"
@@ -10,28 +9,40 @@ function calc(){
   document.getElementById("errorDiv").style.display = "none"
   
       cart.map((items, j)=>{
-        console.log(j, items);
         show.innerHTML += `
-        <div style= "display: flex; justify-content: space-between;" >
-         <p style= "margin-right: 50px;" > ${j+1}. ${cart[j]}</p>
-         <button class= "btn btn-danger btn-sm my-3 mx-5 " onclick="del(${j+1})" >Delete Item</button>
-         <button class= "btn btn-warning btn-sm my-3 mx-5" onclick= "edit(${j+1})" >Edit item</button>
-         </div>
+        <div style= "display: flex; justify-content: space-between;" class= "container mb-5">
+          <div class="row">
+              <p> ${j+1}. ${items}</p>
+              <button class= "btn btn-danger btn-sm col-3 mx-1 ms-5" onclick="del(${j})" >Delete Item</button>
+              <button class= "btn btn-warning btn-sm col-3 mx-1 " data-bs-toggle="modal" data-bs-target="#exampleModal2" onclick="getIndex(${j})" >Edit item</button>  
+          </div>  
+        </div>      
         `
       })
 }
 
-  function del(j){
-    cart.splice(j-1, j)
+
+
+
+   const del = (index) => {
+    cart.splice(index, 1)
     calc()
   }
 
-  function edit(j){
-    var newItem = prompt("Input The New Item")
-      cart.splice(j-1, j, newItem)
+
+  var myIndex;
+  const getIndex = (index)=>{
+   myIndex = index
+  }
+
+  const edit = () => {
+    var editedItem = document.getElementById("newItem").value
+      cart.splice(myIndex, 1, editedItem)
       document.getElementById("input").value = ""
       calc()
   }
+
+
   
 
 
@@ -50,13 +61,15 @@ function calc(){
 
 
 function addToFirst()  {
-  if (input.value === "") {
+  let addedInput = document.getElementById("addModal").value
+  if (addedInput === ""){
     document.getElementById("errorDiv").style.display = "block"
-    errorDiv.innerHTML = "Please Input An Item Before Adding To Cart"
-  } else{
-    cart.unshift(input.value)
-    document.getElementById("input").value = "" 
-    calc()
+    errorDiv.innerHTML = "Please Input The Item You Want To Add To First"
+  } else {
+    document.getElementById("errorDiv").style.display = "none"
+    cart.unshift(addedInput)
+    document.getElementById("addModal").value = ""
+    calc ()
   }
 }
 
