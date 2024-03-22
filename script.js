@@ -25,8 +25,11 @@ function calc() {
 
 
    const del = (index) => {
+    var confirmation = window.confirm("Are You Want To Delete This Item?")
+    if (confirmation === true){
     cart.splice(index, 1)
     calc()
+   }
   }
 
 
@@ -35,7 +38,7 @@ function calc() {
    myIndex = index
   }
 
-  const edit = () => {
+  const edit = (index) => {
     var editedItem = document.getElementById("newItem").value
       cart.splice(myIndex, 1, editedItem)
       document.getElementById("input").value = ""
@@ -61,77 +64,70 @@ function calc() {
 
 
 function addToFirst()  {
-  let addedInput = document.getElementById("addModal").value
+  let addedInput = document.getElementById("addFirstInput").value
   if (addedInput === ""){
     document.getElementById("errorDiv").style.display = "block"
     errorDiv.innerHTML = "Please Input The Item You Want To Add To First"
   } else {
     document.getElementById("errorDiv").style.display = "none"
     cart.unshift(addedInput)
-    document.getElementById("addModal").value = ""
+    document.getElementById("addFirstInput").value = ""
     calc ()
   }
 }
 
 
 function addToLast()  {
-  if (input.value === ""){
-    alert("Please Input an Item Before Proceeding To Add It To Cart")
+  let addedInput = document.getElementById("addLastInput").value
+  if (addedInput === ""){
+    document.getElementById("errorDiv").style.display = "block"
+    errorDiv.innerHTML = "Please Input The Item You Want To Add To Last"
   } else {
-    cart.push(input.value)
-    document.getElementById("input").value = ""
+    cart.push(addedInput)
+    document.getElementById("addLastInput").value = ""
     calc ()
   }
 }
 
 function deleteFirst()  {
   if (cart.length === 0){
-    alert("You Don't Have Any Item In Your Cart")
+    document.getElementById("errorDiv").style.display = "block"
+    errorDiv.innerHTML = "You Don't Have Any Item In Your Cart"
   } else{
-  cart.shift(input.value)
-  document.getElementById("input").value = "" 
-  calc ()
+  let confirmation = window.confirm("Are You Sure You want To Delete The First Item?")
+  if (confirmation === true ){
+      cart.shift(input.value)
+      calc ()
+    }
   }
 }
 
 
 function deleteLast()  {
   if (cart.length === 0){
-    alert("You Don't Have Any Item In Your Cart")
+    document.getElementById("errorDiv").style.display = "block"
+    errorDiv.innerHTML = "You Don't Have Any Item In Your Cart"
   } else {
-  cart.pop(input.value)
-  document.getElementById("input").value = "" 
-  calc ()
+    let confirmation = window.confirm("Are You Sure You want To Delete The Last Item?")
+    if (confirmation === true){
+      cart.pop(input.value)
+      calc ()
+    }
   }
 }
 
-function replaceAnItem()  {
-  if (cart.length === 0) {
-    alert("You Don't Have Any Item In The Cart") }
-    else {
-      var itemNumber =  Number(prompt ("Enter The Number Of The Item You Want To Replace"))
-      if (itemNumber > cart.length || itemNumber <= 0){
-        alert("Invalid Item Number")
-      } else {
-        var newItemNumber = prompt ("Enter The Name Of The New Item Here")
-      cart.splice(itemNumber-1, 1, newItemNumber)
-      document.getElementById("input").value = ""
-      calc()
-      }
-    }
-  }
   
     
 
 
 function deleteAllItems()  {
   if (cart.length === 0) {
-    alert("There is Nothing to Delete")
+    document.getElementById("errorDiv").style.display = "block"
+    errorDiv.innerHTML = "You Don't Have Any Item In Your Cart"
   } else {
   let confirmation = confirm("Are you sure you want to delete all the items in your cart?")
   if (confirmation === true){
       cart.splice(0, cart.length)
-      document.getElementById("input").value = ""
       calc ()
     }
   }

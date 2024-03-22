@@ -14,12 +14,12 @@
 </head>
 <body style="background-color: rgba(13, 193, 224, 0.568);">
 
-  <div class="container-fluid">
+  <div class="container-fluid" >
 
-  <div class=" mx-auto row-lg-7 shadow-lg mt-lg-5 mt-2 p-3 col-12 col-lg-8 maincont">
+  <div class=" mx-auto row-lg-7 shadow-lg mt-lg-5 mt-2 p-3 col-12 col-lg-8 maincont" id="userInputDiv">
     <p style="font-weight: bold;"></p>
-    <h1 class="text-center my-3 fs-1 bg-dark text-light p-3 rounded-4">Ecomm-App <img src="img/tl.png" alt="Ecomm-App Logo" class="col-1"></h1>
-    <marquee behavior="" direction="" class="fs-5 my-3">Welcome To Mini-Mart, Thanks for Shopping with us. Free Delivery on Orders above #40,000</marquee>
+    <h1 class="text-center my-1 fs-1 text-dark p-2 rounded-4" style="background-color: rgb(138, 167, 247);">Ecomm-App <img src="img/tl.png" alt="Ecomm-App Logo" class="col-1"></h1>
+    <marquee behavior="" direction="" class="fs-5 my-2">Welcome To Mini-Mart, Thanks for Shopping with us. Free Delivery on Orders above #40,000</marquee>
     <div class="items div text-center">
       <button class=" my-3 mx-3 btn btn-info" onclick="hpEnvy()">HP Envy</button>
       <button class=" my-3 mx-3 btn btn-info" onclick="samsungFlip()">Samsung Flip</button>
@@ -35,15 +35,15 @@
 </div>
 
 
-<div class=" mx-auto row-lg-2  my-4 shadow-lg col-12 col-lg-8 mx-auto">
-  <div id="show" class="fs-3 fw-bold my-5 text-dark p-3" style="display: none;">
+<div class=" my-4 shadow-lg col-12 col-lg-8 mx-auto">
+  <div id="show" class="fs-3 fw-bold my-5 text-dark p-3 userOutputDiv" style="display: none;">
   </div>
  </div>
 
 <div class="container mx-auto text-center" >
   <div class="mx-auto text-center" id="allButtons" style="display: none;">
     <button class="w-20 btn btn-success my-3 mx-3 btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">Add First Item</button>
-    <button class="w-20 btn btn-primary my-3 mx-3 btn-lg" onclick="addToLast()">Add Last Item</button>
+    <button class="w-20 btn btn-primary my-3 mx-3 btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal1">Add Last Item</button>
     <button class="w-20 btn btn-secondary my-3 mx-3 btn-lg" onclick="deleteFirst()">Delete First Item</button>
     <button class="w-20 btn btn-dark my-3 mx-3 btn-lg" onclick="deleteLast()">Delete Last Item</button>
     <button class="w-20 btn my-3 mx-3 btn-lg btn-danger" onclick="deleteAllItems()">Delete All Items</button>
@@ -51,7 +51,7 @@
 </div> 
 
 
-                                  <!-- The Modal Section -->
+                                  <!-- The Modals Section -->
 
 
 <!-- Modal For Add First-->
@@ -59,11 +59,11 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Add an Item To The Beginning</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add an Item To The Top Of The List</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <input type="text" class="form form-control" placeholder="Input item here..." id="addModal">
+        <input type="text" class="form form-control" placeholder="Input item name here..." id="addFirstInput">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -75,12 +75,36 @@
 
 
 
+
+
+<!-- Modal For Add Last-->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add an Item To The End Of The List</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form form-control" placeholder="Input item name here..." id="addLastInput">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="addToLast()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 <!-- Modal For Edit-->
 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit An Item In Your Cart</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit This Item</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
