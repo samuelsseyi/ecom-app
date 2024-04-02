@@ -8,11 +8,11 @@ function calc() {
   document.getElementById("allButtons").style.display = "block"
   document.getElementById("errorDiv").style.display = "none"
   
-      cart.map((items, j)=>{
+      cart.map((theItem, j)=>{
         show.innerHTML += `
         <div style= "display: flex; justify-content: space-between;" class= "container mb-5">
           <div class="row">
-              <p> ${j+1}. ${items}</p>
+              <p> ${j+1}. ${theItem} </p>
               <button class= "btn btn-danger btn-sm col-3 mx-1 ms-5" onclick="del(${j})" >Delete Item</button>
               <button class= "btn btn-warning btn-sm col-3 mx-1 " data-bs-toggle="modal" data-bs-target="#exampleModal2" onclick="getIndex(${j})" >Edit item</button>  
           </div>  
@@ -20,8 +20,6 @@ function calc() {
         `
       })
 }
-
-
 
 
    const del = (index) => {
@@ -34,11 +32,15 @@ function calc() {
 
 
   var myIndex;
+
   const getIndex = (index)=>{
    myIndex = index
+   
+   console.log(`${myIndex}`);
+   document.getElementById("newItem").value = myIndex
   }
 
-  const edit = (index) => {
+  const edit = () => {
     var editedItem = document.getElementById("newItem").value
       cart.splice(myIndex, 1, editedItem)
       document.getElementById("input").value = ""
